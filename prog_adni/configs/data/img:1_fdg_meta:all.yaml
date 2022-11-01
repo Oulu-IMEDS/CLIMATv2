@@ -1,0 +1,58 @@
+hydra:
+  run:
+    dir: ${output_root}/${now:%Y-%m-%d_%H-%M-%S}_grading:${grading}_FDG_method:${method_name}_model:${model_name}_loss:${loss_name}_fold:${fold_index}_seed:${seed}
+pkl_meta_filename: cv_split_10folds_${grading}_fdg_${seed}.pkl # cv_split_5folds_${grading}_d1_evalsite_${seed}.pkl
+meta_filename: adni_fdgpet_prognosis.csv # TADPOLE_D1_prog_raw.csv # TADPOLE_D1_prog_br.csv
+n_input_imgs: 1
+n_channels: 1
+parser:
+  grading: ${grading}
+  prognosis: prognosis_${grading}
+  prognosis_mask: prognosis_mask_${grading}
+  progs: progs_${grading}
+  progs_mask: progs_mask_${grading}
+  input:
+    - fdg
+  metadata:
+    - IMG
+    - AGE
+    - PTGENDER
+    - PTMARRY
+    - PTRACCAT
+    - PTETHCAT
+    - CDRSB
+    - ADAS11
+    - MMSE
+    - RAVLT_immediate
+#    - FDG
+#    - AV45
+    - ABETA
+    - TAU
+    - PTAU
+    - APOE4
+    - RAVLT_learning
+    - RAVLT_forgetting
+    - RAVLT_perc_forgetting
+    - MOCA
+    - ICV
+    - FAQ    
+    - PTEDUCAT
+    - Hippocampus
+    - WholeBrain
+    - Entorhinal
+    - Fusiform
+    - MidTemp
+    - EcogPtMem
+    - EcogPtLang
+    - EcogPtVisspat
+    - EcogPtPlan
+    - EcogPtOrgan
+    - EcogPtDivatt
+    - EcogPtTotal
+    - EcogSPMem
+    - EcogSPLang
+    - EcogSPVisspat
+    - EcogSPPlan
+    - EcogSPOrgan
+    - EcogSPDivatt
+    - EcogSPTotal

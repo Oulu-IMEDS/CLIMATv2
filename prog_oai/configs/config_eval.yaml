@@ -1,0 +1,35 @@
+defaults:
+  - config: seq_multi_prog_feat2_2
+  - data: img:1_dt:0_meta:all
+eval:
+  root:
+  output:
+  patterns:
+  n_resamplings: 1
+club:
+  s: 1
+dataset: oai
+use_y0_class_weights: False
+use_pr_class_weights: False
+use_pn_class_weights: False
+multi_class_mode: ovo
+use_only_grading:
+use_only_baseline: True
+pn_init_power: 0.1
+pr_init_power: 1
+model_selection_mode: avg
+prognosis_coef: 1.0
+diag_coef: 1.0
+cons_coef: 0.5
+predict_y0: True
+loss_name: FL
+most_followup_meta_filename: "MOST_names.csv"
+most_meta_filename: MOST_progression_all.csv
+save_predictions: False
+save_attn: False
+compute_all_metrics: True
+test_mode: test
+use_nonlinear_dec: True
+use_separate_ffn: False
+extra_optimizer:
+  lr: 0.0001

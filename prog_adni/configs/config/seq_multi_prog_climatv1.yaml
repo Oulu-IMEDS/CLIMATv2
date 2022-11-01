@@ -1,0 +1,84 @@
+root:
+  path: /scratch/project_2002147/hoang/data
+  dir_fdg: FDG_PET_CoregAvg
+output_root: outputs
+skip_store: False
+meta_root: ./Metadata
+n_folds: 10
+fold_index: 1
+method_name: feat5_4
+backbone_name: shufflenetv2 # x3d_s # resnet18
+model_name: multimodal
+shufflenet_groups: 1
+backbone_checkpoint_path: /home/hoang/.cache/torch/hub/checkpoints
+n_pn_classes: 3
+seq_len: 5
+sample_size: 160
+pretrained_model:
+ssp_start: 0
+n_epochs: 500
+bs: 32
+momentum: 0.9
+bw: 64
+wd: 0
+lr: 1e-5
+num_workers: 8
+grading: DXTARGET
+snapshots: snapshots
+seed: 564047
+log_dir: tb
+comment: grading:${grading}_method:${method_name}_model:${model_name}_site:${site}_fold:${fold_index}_seed:${seed}
+format: ''
+target_col: first_prog_${grading}
+train_size_per_class: all
+max_ratio: 0.2
+alpha: 0.5
+# MODEL
+num_cls_num: ${seq_len}
+width_mult: 2.0
+global_pool_name:
+max_depth: 4
+use_bn: True
+pretrained: imagenet
+drop_rate: 0.2
+drop_rate_between: 0.1
+n_img_features: -1
+n_meta_features: 512
+n_diag_features: ${n_meta_features}
+input_3x3: True
+gp: ....
+# FeaT KL
+predict_current_KL: True
+feat_use: True
+feat_diag_dim: -1
+feat_diag_heads: 4
+feat_diag_depth: 2
+feat_diag_mlp_dim: 512 # This mustn't be smaller than the number of image features
+feat_diag_emb_drop_rate: 0.0
+feat_diag_n_outputs: 1
+# Feat fusion
+feat_fusion_dim: -1
+feat_fusion_heads: 4
+feat_fusion_depth: 4
+feat_fusion_mlp_dim: ${n_meta_features}
+feat_fusion_emb_drop_rate: 0.0
+#feat_fusion_n_outputs: 0
+# FeaT prognosis
+feat_dim: -1
+feat_heads: 4
+feat_depth: 2
+feat_mlp_dim: 512 #
+feat_emb_drop_rate: 0.0
+feat_n_outputs: ${seq_len}
+# OPTIMIZER
+clip_norm: -1.0
+beta1: 0.95
+beta2: 0.999
+# LOSS
+focal:
+  gamma: 2.0
+  alpha: 4
+prognosis_coef: 1.0
+diag_coef: 1.0
+extract_pr_func: extract_progression_v1
+extract_pn_func: extract_prognosis_v1

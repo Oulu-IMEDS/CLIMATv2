@@ -1,0 +1,87 @@
+hydra:
+  run:
+    dir: ${output_root}/${now:%Y-%m-%d_%H-%M-%S}_grading:${grading}_method:${method_name}_model:${model_name}_loss:${loss_name}_site:${site}_fold:${fold_index}_seed:${seed}
+output_root: outputs
+skip_store: False
+root: /home/hoang/data/MOST_OAI_FULL_0_2
+meta_root: /home/hoang/workspace/OAPOP/common/Metadata/in1_outseq_gradingmulti_inter_all_new
+pkl_meta_filename: cv_split_5folds_${grading}_oai_evalsite_${site}_${seed}.pkl
+fold_index: 1
+method_name: climatv2
+model_name: kneeimage
+backbone_name: resnet18 # resnet18
+use_ssp: True
+n_pr_classes: 2
+n_pn_classes: 5
+seq_len: 8
+pretrained_model: '' #'/home/hoang/workspace/Semix/oaprogression_op/outputs/2020-08-03/22-48-44/snapshots/model_057_max_kappas_0.884.pth'
+ssp_start: 0
+n_epochs: 500
+bs: 32
+momentum: 0.9
+bw: 64
+wd: 0
+lr: 1e-4
+num_workers: 8
+grading: KL
+use_hiar_split: false
+subsample_train: -1
+snapshots: snapshots
+seed: 12345
+log_dir: tb
+comment: grading:${grading}_method:${method_name}_model:${model_name}_site:${site}_fold:${fold_index}_seed:${seed}
+format: ''
+site:
+target_col: first_prog_${grading}
+train_size_per_class: all
+max_ratio: 0.2
+oai_meta_filename: OAI_progression_site.csv
+most_meta_filename:
+delta: 0.8
+alpha: 0.5
+# MODEL
+global_pool_name:
+max_depth: 5
+use_bn: True
+pretrained: imagenet
+drop_rate: 0.3
+drop_rate_between: 0.1
+n_img_features: -1
+n_meta_features: 64
+n_kl_features: ${n_meta_features}
+n_input_imgs: 1
+input_3x3: False
+gp: ....
+# FeaT KL
+predict_current_KL: True
+num_cls_num: 1 # ${seq_len}
+feat_use: True
+feat_kl_dim: -1
+feat_kl_heads: 4
+feat_kl_depth: 2
+feat_kl_mlp_dim: 256
+feat_kl_emb_drop_rate: 0.3
+feat_kl_n_outputs: 1
+# Feat fusion
+feat_fusion_dim: -1
+feat_fusion_heads: 4
+feat_fusion_depth: 2
+feat_fusion_mlp_dim: ${n_meta_features}
+feat_fusion_emb_drop_rate: 0.3
+#feat_fusion_n_outputs: 0
+# FeaT prognosis
+feat_dim: -1
+feat_heads: 4
+feat_depth: 6
+feat_mlp_dim: 256
+feat_emb_drop_rate: 0.3
+feat_n_outputs: ${seq_len}
+# OPTIMIZER
+clip_norm: -1
+beta1: 0.95
+beta2: 0.999
+# LOSS
+use_focal: True
+focal:
+  gamma: 2.0
+  alpha: 4

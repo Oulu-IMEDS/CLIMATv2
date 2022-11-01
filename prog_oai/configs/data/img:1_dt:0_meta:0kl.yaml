@@ -1,0 +1,18 @@
+use_oarsi: False
+parser:
+  grading: ${grading}
+  use_oarsi: False
+  prognosis: prognosis_${grading}
+  prognosis_mask: prognosis_mask_${grading}
+  progs: progs_${grading}
+  progs_mask: progs_mask_${grading}
+  metadata:
+    - IMG
+    - AGE
+    - SEX
+    - INJ
+    - SURG
+    - BMI
+    - WOMAC
+  output:
+    - KL

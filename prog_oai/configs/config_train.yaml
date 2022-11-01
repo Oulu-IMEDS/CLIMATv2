@@ -1,0 +1,29 @@
+defaults:
+  - config: seq_multi_prog_climatv2
+  - data: img:1_dt:0_meta:0kl
+
+club:
+  s: 1
+
+dataset: oai
+use_y0_class_weights: False
+use_pn_class_weights: False
+multi_class_mode: ovo
+pn_init_power: 0.1
+use_only_baseline: False
+model_selection_mode: avg
+loss_name: CE
+save_attn: False
+most_meta_filename:
+compute_all_metrics: False
+prognosis_coef: 1.0
+diag_coef: 0.0
+cons_coef: 0.5
+predict_y0: True
+use_nonlinear_dec: True
+use_separate_ffn: False
+extra_optimizer:
+  step: per_batch
+  lr: 0.0001
+  beta1: 0.95
+  beta2: 0.999

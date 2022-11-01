@@ -1,0 +1,29 @@
+defaults:
+  - config: seq_multi_prog_climatv2
+  - data: img:1_fdg_meta:all
+
+dataset: adni
+use_y0_class_weights: False
+use_pn_class_weights: False
+y0_init_power: 0.0
+pn_init_power: 0.0
+model_selection_mode: avg
+rocauc_mode: ovr
+predict_current_KL: False
+display_ece: True
+club:
+  s: 1
+extra_optimizer:
+  step: per_batch
+  lr: 0.0001
+  beta1: 0.95
+  beta2: 0.999
+loss_name: CE
+save_attn: False
+save_preds: False
+fdg:
+  mean: 1385.473
+  std: 3435.718
+av45:
+  mean: 24911.911
+  std: 52297.735
