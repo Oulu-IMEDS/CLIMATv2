@@ -3,6 +3,7 @@
 This is the implementation of the paper CLIMATv2: https://arxiv.org/abs/2210.13889. Its previous version (CLIMATv1) can be found at https://arxiv.org/abs/2104.03642.
 
 The concept of the framework is as follows
+
 <img src="asset/concept.png" alt="ADNI inputs" width="400" style="display: block; margin: 0 auto"/>
 
 
@@ -89,6 +90,7 @@ Coefficients in loss
 - `MTL`: multi-task loss
 
 Hyperparameters used in the paper:
+
 <img src="asset/adni_hyperparam.png" alt="ADNI inputs" width="350" style="display: block; margin: 0 auto"/>
 
 ### Evaluation
@@ -159,6 +161,7 @@ Data:
 
 List of augmentations applied to knee images 
 (**Note**: all right knee images are vertically flipped):
+
 <img src="asset/oai_aug.png" alt="OAI inputs" width="450" style="display: block; margin: 0 auto"/>
 
 ### Evaluation
